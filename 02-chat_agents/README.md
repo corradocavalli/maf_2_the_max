@@ -1,0 +1,2 @@
+The Microsoft Agent Framework supports creating agents using models deployed with Azure AI Foundry Models via an 
+OpenAI Chat Completion and Rensposes compatible API, and therefore the OpenAI client libraries can be used to access Foundry models.
