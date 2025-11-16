@@ -10,7 +10,7 @@ and this package module ``pip install `agent-framework[azure-ai]``
 The `01-basic_ai_fondry_agent.py` show a basic example of creating an agent that uses a model deplayed in AI Foundry.
 
 You can also create the AzureAIAgentClient details this way:  
-
+run
 ```python
 AzureAIAgentClient(
             project_endpoint="https://<your-project>.services.ai.azure.com/api/projects/<project-id>",
