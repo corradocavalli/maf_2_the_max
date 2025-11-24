@@ -1,3 +1,34 @@
+"""
+Remote MCP Tool Integration with Agents
+========================================
+
+This script demonstrates how to interact with remote Model Context Protocol (MCP)
+tools via StreamableHTTP, enabling agents to use tools hosted on external servers.
+
+Prerequisites:
+--------------
+1. Start the local MCP server: `uv run mcp-servers/server.py`
+2. Ensure the server is running on http://localhost:8000/mcp
+3. Configure Azure AI credentials (via Azure CLI or environment variables)
+
+Key Concepts:
+-------------
+- **MCPStreamableHTTPTool**: Connect to MCP servers via HTTP, enabling remote tool access
+- **HostedMCPTool**: Use publicly hosted MCP servers (e.g., Time MCP Server)
+- **Multi-Server Composition**: Combine multiple MCP servers (local + remote) in a single agent
+- **Sampling Callback**: Monitor MCP server communication in real-time
+
+MCP Tools in This Example:
+--------------------------
+1. Local MCP Server (via server.py):
+   - get_balance(): Check account balance
+   - make_payment(amount, description): Process payments
+
+2. Remote Hosted MCP Server (Time MCP Server):
+   - Time-related queries (current time, timezone conversions, etc.)
+
+"""
+
 import asyncio
 import os
 

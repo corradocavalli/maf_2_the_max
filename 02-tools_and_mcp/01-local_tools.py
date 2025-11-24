@@ -1,3 +1,13 @@
+"""
+Agent with Local Tools
+=======================
+
+This script demonstrates how to create an agent that uses local Python functions as tools.
+Local tools allow agents to interact with your application's logic, databases, APIs,
+or any Python code you define.
+
+"""
+
 import asyncio
 from typing import Annotated, Any
 

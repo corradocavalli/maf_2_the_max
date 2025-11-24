@@ -1,3 +1,13 @@
+"""
+Streaming Agent Response
+=========================
+
+This script demonstrates how to use the streaming feature in Microsoft Agent Framework.
+Streaming allows you to receive agent responses incrementally as they are generated,
+providing a more responsive user experience similar to ChatGPT's streaming interface.
+
+"""
+
 import asyncio
 
 from agent_framework.azure import AzureAIAgentClient

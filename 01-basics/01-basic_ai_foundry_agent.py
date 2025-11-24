@@ -1,3 +1,11 @@
+"""
+Basic AI Foundry Agent Invocation
+==================================
+
+This script demonstrates the simplest way to invoke an agent deployed to Azure AI Foundry. It shows the minimal code needed to create and interact with
+an AI agent using the Agent Framework.
+"""
+
 import asyncio
 
 from agent_framework.azure import AzureAIAgentClient

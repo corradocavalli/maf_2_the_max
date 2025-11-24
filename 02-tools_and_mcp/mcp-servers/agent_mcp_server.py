@@ -1,3 +1,25 @@
+"""
+Agent as MCP Server
+===================
+
+This script demonstrates how to turn an Agent Framework agent into an MCP server
+that can be accessed remotely via StreamableHTTP protocol.
+
+Key Concepts:
+-------------
+- **Agent-as-a-Service**: Expose agent capabilities as MCP tools over HTTP
+- **StreamableHTTPSessionManager**: MCP protocol handler for HTTP transport
+- **Starlette/Uvicorn**: ASGI web framework for serving the MCP endpoint
+- **Tool Wrapping**: Convert agent.run() into an MCP-compatible tool interface
+
+Architecture:
+-------------
+Agent Framework Agent → MCP Server Wrapper → HTTP Endpoint → Remote Clients
+                     ↓
+              [get_balance, make_payment tools]
+
+"""
+
 import asyncio
 from contextlib import asynccontextmanager
 from typing import Annotated

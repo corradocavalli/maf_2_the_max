@@ -2,11 +2,11 @@ import asyncio
 from collections.abc import Collection
 from typing import Any
 
+from agent import get_client
 from agent_framework import ChatMessage, ChatMessageStoreProtocol
 from agent_framework._threads import ChatMessageStoreState
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
-from core.agent import get_client
 from dotenv import load_dotenv
 from rich import print
 

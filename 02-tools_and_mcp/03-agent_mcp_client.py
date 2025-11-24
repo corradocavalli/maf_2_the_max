@@ -2,6 +2,20 @@
 Client for Agent MCP StreamableHTTP Server
 
 This example demonstrates how to connect to the Agent MCP server via StreamableHTTP transport.
+
+Prerequisites:
+--------------
+1. Start the agent MCP server: `uv run mcp-servers/agent_mcp_server.py`
+2. Ensure the server is running on http://localhost:8001/mcp
+3. Configure Azure AI credentials (via Azure CLI or environment variables)
+
+How It Works:
+-------------
+This client connects to an MCP server that itself wraps an agent (agent_mcp_server.py).
+The example demonstrates:
+- Connecting to a StreamableHTTP MCP server that exposes agent capabilities as MCP tools
+- Combining MCP tools with local tools (get_weather function)
+- Processing payments and checking balances through the remote agent MCP server
 """
 
 import asyncio

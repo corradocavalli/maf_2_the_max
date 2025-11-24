@@ -1,3 +1,21 @@
+"""
+Agent Framework with Azure AI Foundry SDK Features
+===================================================
+
+This script demonstrates how Microsoft Agent Framework seamlessly integrates with
+Azure AI Foundry SDK features, giving you access to the full capabilities of both
+frameworks. It shows how to use native Foundry SDK classes alongside Agent Framework.
+
+Key Concepts:
+-------------
+1. **AIProjectClient**: Direct access to Azure AI Foundry project resources
+2. **AgentsClient**: Low-level agent creation and management from Foundry SDK
+3. **Persistent Agents**: Creating agents that persist in Azure AI Foundry
+4. **ChatAgent Wrapper**: Using Agent Framework's ChatAgent with Foundry agents
+5. **Resource Management**: Proper cleanup of created agents
+
+"""
+
 import asyncio
 import os
 
