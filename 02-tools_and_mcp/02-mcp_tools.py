@@ -46,7 +46,6 @@ async def main():
         name="payment_server",
         url="http://localhost:8000/mcp",
     )
-    mcp_server.sampling_callback = lambda chunk: print(f"[green]{chunk}[/green]")
     async with (
         AzureCliCredential() as credential,
         AzureAIAgentClient(
