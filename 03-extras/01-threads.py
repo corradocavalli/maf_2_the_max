@@ -1,3 +1,23 @@
+"""
+Conversation Threads with Serialization and Persistence
+========================================================
+
+This script demonstrates how to use threads to maintain conversation context
+and serialize/deserialize conversations for persistence across sessions.
+
+Key Concepts:
+-------------
+- **Threads**: Maintain conversation history and context across multiple agent.run() calls
+- **Serialization**: Convert thread state to a portable format (e.g., JSON) for storage
+- **Deserialization**: Restore thread state from serialized data to resume conversations
+- **Persistence**: Save and load conversation history to/from disk, database, or cache
+
+Thread Behavior:
+----------------
+- WITH thread: Agent has access to full conversation history and context
+- WITHOUT thread: Each query is treated as independent with no memory of previous messages
+"""
+
 import asyncio
 
 from agent_framework.azure import AzureAIAgentClient

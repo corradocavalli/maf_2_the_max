@@ -1,3 +1,49 @@
+"""
+Middleware Pipeline for Agent, Chat, and Function Interception
+===============================================================
+
+This script demonstrates how to use middleware objects to intercept and process
+agent operations, chat requests, and function calls at different stages of execution.
+
+Key Concepts:
+-------------
+- **Middleware Pipeline**: Chain of interceptors that process requests/responses
+- **Agent Middleware**: Intercepts agent.run() invocations
+- **Chat Middleware**: Intercepts messages sent to/from the LLM
+- **Function Middleware**: Intercepts tool/function executions
+- **Request/Response Modification**: Alter behavior at each pipeline stage
+
+Middleware in This Example:
+---------------------------
+1. **Agent Middleware** (agent_middleware):
+   - Logs when agent.run() starts and completes
+   - Provides visibility into high-level agent operations
+   - Use case: Audit trails, performance monitoring, workflow tracking
+
+2. **Chat Middleware** (security_middleware):
+   - Inspects chat messages for sensitive content
+   - Blocks requests containing the word "bitcoin"
+   - Returns rejection message without calling the LLM
+   - Use case: Content filtering, security policies, compliance
+
+3. **Function Middleware** (LoggingFunctionMiddleware):
+   - Logs tool/function invocations
+   - Measures and reports execution time
+   - Use case: Performance monitoring, debugging, usage analytics
+
+Execution Flow:
+---------------
+User Query → Agent Middleware (pre)
+           → Chat Middleware (security check)
+           → LLM Call (if not terminated)
+           → Function Middleware (if tool called)
+           → Tool Execution
+           → Function Middleware (post)
+           → Chat Middleware (post)
+           → Agent Middleware (post)
+           → Response
+"""
+
 import asyncio
 import time
 from collections.abc import Awaitable, Callable
@@ -13,7 +59,6 @@ from agent_framework import (
     FunctionMiddleware,
     Role,
     chat_middleware,
-    function_middleware,
 )
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential

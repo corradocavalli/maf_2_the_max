@@ -1,3 +1,68 @@
+"""
+Custom Context Provider for Dynamic Context Management
+=======================================================
+
+This script demonstrates how to create a custom ContextProvider that modifies
+the inference context before it's passed to the LLM and processes the response
+after the LLM completes the request.
+
+Key Concepts:
+-------------
+- **ContextProvider**: Interface for pre/post-processing LLM interactions
+- **invoking()**: Modify context BEFORE sending to the LLM
+- **invoked()**: Process response AFTER receiving from the LLM
+- **Dynamic Instructions**: Inject context-aware instructions based on state
+- **Information Extraction**: Use LLM to extract and cache structured data
+
+How It Works:
+-------------
+1. Before LLM Call (invoking):
+   - Check if user's name and age are known
+   - If missing, inject instructions to request this information
+   - Add context instructions that guide the LLM's behavior
+
+2. After LLM Call (invoked):
+   - Analyze user messages for name and age information
+   - Use structured output (Pydantic model) to extract data
+   - Cache extracted information for future interactions
+   - Update internal state to avoid re-asking
+
+Example Flow:
+-------------
+User: "What is the square root of 9?"
+→ invoking: "Ask for name and age, decline to answer until provided"
+Agent: "Before I help, may I know your name and age?"
+
+User: "My name is Bob"
+→ invoked: Extract name="Bob" from message, cache it
+→ invoking: "User's name is Bob. Still need age."
+Agent: "Thanks Bob! May I also know your age?"
+
+User: "I am 27 years old"
+→ invoked: Extract age=27 from message, cache it
+→ invoking: "User's name is Bob, age is 27" (no more requests)
+Agent: "Got it, Bob! How can I help you today?"
+
+ContextProvider Methods:
+------------------------
+- **invoking(messages, **kwargs)**: Pre-process before LLM call
+  - Modify system instructions
+  - Add contextual information
+  - Enforce requirements or policies
+  - Returns: Context object with additional instructions
+
+- **invoked(request, response, exception, **kwargs)**: Post-process after LLM call
+  - Extract information from user messages
+  - Update internal state/memory
+  - Log interactions
+  - Trigger side effects or workflows
+
+- **serialize()**: Persist provider state for thread serialization
+  - Save cached data for session recovery
+  - Enable cross-session memory
+U
+"""
+
 import asyncio
 from collections.abc import MutableSequence, Sequence
 from typing import Any

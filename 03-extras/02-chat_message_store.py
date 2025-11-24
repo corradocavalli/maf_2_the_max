@@ -1,16 +1,46 @@
+"""
+Custom Chat Message Store Implementation
+=========================================
+
+This example demonstrates how to implement a custom message store to persist
+conversation messages in your preferred storage backend. In this case, messages
+are stored in-memory, but the pattern can be adapted for any storage system.
+
+Key Concepts:
+-------------
+- **ChatMessageStoreProtocol**: Interface that custom stores must implement
+- **Custom Storage**: Store messages in databases, files, cache, or any system
+- **Lifecycle Methods**: add_messages, list_messages, serialize, deserialize
+- **Flexibility**: Complete control over how and where messages are stored
+
+Note:
+-----
+Custom message stores work with AzureOpenAIChatClient but are NOT compatible
+with AzureAIAgentClient, which uses Azure AI Foundry's managed thread service.
+"""
+
 import asyncio
+import os
 from collections.abc import Collection
 from typing import Any
 
-from agent import get_client
 from agent_framework import ChatMessage, ChatMessageStoreProtocol
 from agent_framework._threads import ChatMessageStoreState
-from agent_framework.azure import AzureAIAgentClient
+from agent_framework.azure import AzureOpenAIChatClient
 from azure.identity.aio import AzureCliCredential
 from dotenv import load_dotenv
 from rich import print
 
 load_dotenv()
+
+
+def get_client():
+    return AzureOpenAIChatClient(
+        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+        endpoint=os.getenv("AZURE_OPENAI_API_ENDPOINT"),
+        deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+    )
 
 
 class CustomChatMessageStore(ChatMessageStoreProtocol):
