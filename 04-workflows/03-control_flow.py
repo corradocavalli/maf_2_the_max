@@ -243,43 +243,6 @@ async def main() -> None:
             if outputs:
                 print(f"Workflow output: {outputs[0]}")
 
-    """
-    Sample Output:
-
-    Processing email:
-    Subject: Team Meeting Follow-up - Action Items
-
-    Hi Sarah,
-
-    I wanted to follow up on our team meeting this morning and share the action items we discussed:
-
-    1. Update the project timeline by Friday
-    2. Schedule client presentation for next week
-    3. Review the budget allocation for Q4
-
-    Please let me know if you have any questions or if I missed anything from our discussion.
-
-    Best regards,
-    Alex Johnson
-    Project Manager
-    Tech Solutions Inc.
-    alex.johnson@techsolutions.com
-    (555) 123-4567
-    ----------------------------------------
-
-Workflow output: Email sent:
-    Hi Alex,
-
-    Thank you for the follow-up and for summarizing the action items from this morning's meeting. The points you listed accurately reflect our discussion, and I don't have any additional items to add at this time.
-
-    I will update the project timeline by Friday, begin scheduling the client presentation for next week, and start reviewing the Q4 budget allocation. If any questions or issues arise, I'll reach out.
-
-    Thank you again for outlining the next steps.
-
-    Best regards,
-    Sarah
-    """  # noqa: E501
-
 
 if __name__ == "__main__":
     asyncio.run(main())
